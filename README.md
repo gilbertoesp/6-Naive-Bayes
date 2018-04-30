@@ -1,6 +1,4 @@
-# Tarea 7: Red bayesiana simple: Bayes inocente
-
-**Fecha de entrega: 10 de diciembre de 2015**
+# Tarea 6: Red bayesiana simple: Bayes inocente
 
 ## Objetivos
 
