@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-$spam_filter.py
+spam_filter.py
 ------------
 
-Archivo para poder generar un filtro de spam utilizando el método de Naive Bayes,
-en forma laplaciana. Esto es, cada palabra se considera un atributo, el cual puede tener
-valores binarios (1 si se encuentra en el mail y 0 si no se encuentra en el mail.
+Archivo para poder generar un filtro de spam utilizando el método de
+Naive Bayes, en forma laplaciana. Esto es, cada palabra se considera
+un atributo, el cual puede tener valores binarios (1 si se encuentra
+en el mail y 0 si no se encuentra en el mail.
 
 Las clases tambien son binarias, 1 si son spam y 0 si no son spam.
 
 Los datos ya vienen preprocesados de forma que
-
 
 """
 
@@ -42,19 +42,21 @@ def ejemplo_datos():
     datos, clases = carga_datos('mails.data', 'mails.class')
     vocabulario = carga_vocabulario()
 
-    print "Datos: ", len(datos), " con dimension: ", len(datos[0])
-    print "Clases: ", len(clases)
-    print "Vocabulario: ", len(vocabulario)
+    print("Datos: {1} con dimensión {}".format(len(datos), len(datos[0])))
+    print("Clases: {}".format(len(clases)))
+    print("Vocabulario: {}".format(len(vocabulario)))
 
-    print "Ejemplos de correos en los datos"
-    print "--------------------------------\n"
+    print("Ejemplos de correos en los datos")
+    print("--------------------------------\n")
 
     for _ in range(10):
         mail = randint(0, len(clases) - 1)
-        print "\nPara el mail ", mail, " tenemos las palabras:\n\n"
-        print [vocabulario[i] for i in range(len(vocabulario)) if datos[mail][i] == 1]
-        print "\ny el mail ", "es spam" if clases[mail] == 1 else "no es spam"
-        print"\n-----------------------------------------------------------------------------------------------"
+        print("\nPara el mail {} tenemos las palabras:\n\n".format(mail))
+        print([vocabulario[i] for i in range(len(vocabulario))
+               if datos[mail][i] == 1])
+        print("\ny el mail {}".format("es spam" if clases[mail] == 1
+                                      else "no es spam"))
+        print("\n" + 20*'-')
 
 
 def spam_filter():
@@ -77,13 +79,15 @@ def spam_filter():
     error_entrenamiento = 1.0
     error_prueba = 1.0
 
-    #---------------------------------------------------
-    # agregar aqui el código
-    #---------------------------------------------------
+    #  ---------------------------------------------------
+    #   agregar aqui el código
+    #  ---------------------------------------------------
 
     return error_entrenamiento, error_prueba
 
+
 if __name__ == "__main__":
     ejemplo_datos()
-    #ee, ep = spam_filter()
-    #print "El error de entrenamiento es ",ee," %, mientras que el error de predicción es ",ep," %."
+    #  ee, ep = spam_filter()
+    #  print("El error de entrenamiento es {}".format(ee))
+    #  print("El error de predicción es {}".format(ep))
