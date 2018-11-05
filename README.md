@@ -1,4 +1,8 @@
-# Tarea 6: Red bayesiana simple: Bayes inocente
+![](ia.png)
+
+# Bayes inocente
+
+**Evaluación de competencias 6**
 
 ## Objetivos
 
@@ -19,14 +23,14 @@
    Verifique con la función `test` incluida en el mismo archivo que el código funciona correctamente.
    
 2. Revise, comprenda y ejecute el codigo contenido en el archivo `naive_bayes.py`. Revise los resultados y de ser necesario, 
-   modifique de nuevo la clase `NaiveBayes` del modupo `nb.py`. Se espera una estimacion con un error de precisión menor al 10% con los datos sin ruido. 
+   modifique de nuevo la clase `NaiveBayes` del modulo `nb.py`. Se espera una estimacion con un error de precisión menor al 10% con los datos sin ruido. 
    Compare los resultados de datos con ruido y sin ruido y explique el porqué de los resultados obtenidos en forma de comentario en el 
    archivo.
 
 3. Abre el archivo `spam_filter.py` y complete el código de la función `spam_filter`. Revise y comprenda el código, y ejecutelo, 
    revisando cual es el resultado de aplicar Naive Bayes para la detección de spam.
    
-4. ¿Es posible detectar con Naive Bayes cuales son las palabras que más influyen para decidir que un correo es Spam? 
-   ¿Cuañes palabras son las que determinan más claramente que un correo no es Spam? Anexe su respuesta con justificación 
+4. Es posible detectar con Naive Bayes cuales son las palabras que más influyen para decidir que un correo es Spam. 
+   ¿Cuales palabras son las que determinan más claramente que un correo no es Spam? Anexe su respuesta con justificación 
    al final del archivo `spam_filter.py` en forma de comentario.
 
