@@ -117,7 +117,6 @@ class NaiveBayes:
         for clase in self.clases:
             #  ---------------------------------------------------
             #  agregar aqui el código
-            self.frec['clases'][clase] += clases.count(clase)
             #  raise NotImplementedError("Falta cmletar esto para la tarea")
             #  ---------------------------------------------------
 
@@ -131,7 +130,6 @@ class NaiveBayes:
                 for val in self.vals[var]:
                     #  --------------------------------------------------
                     #  agregar aquí el código
-                    self.frec[var][clase][val] += dato_var_clase.count(val)
                     #  raise NotImplementedError("Falta cmletar esto para la tarea")
                     #  --------------------------------------------------
 
@@ -142,8 +140,6 @@ class NaiveBayes:
         for clase in clases:
             #  ---------------------------------------------------
             #  agregar aqui el código
-            Nc = self.frec['clases'][clase]
-            self.log_probs['clases'][clase] = log(N/Nc)
             #  raise NotImplementedError("Falta cmletar esto para la tarea")
             #  ---------------------------------------------------
 
@@ -153,9 +149,6 @@ class NaiveBayes:
                 for val in self.vals[var]:
                     #  --------------------------------------------------
                     #  agregar aquí el código
-                    Ncv = self.frec[var][clase][val]
-                    K = len(self.vals[var])
-                    self.log_probs[var][clase][val] = log((Ncv + 1)/(Nc + K))
                     #  raise NotImplementedError("Falta cmletar esto para la tarea")
                     #  --------------------------------------------------
 
@@ -178,13 +171,6 @@ class NaiveBayes:
         #  ---------------------------------------------------
         #  agregar aquí el código
 
-        def log_prob(dato, clase):
-            return (self.log_probs['clases'][clase] +
-                    sum([self.log_probs[var][clase][dato[i]]
-                         for (i, var) in enumerate(self.var_nom)]))
-
-        clases = [max(self.clases, key=lambda clase: log_prob(dato, clase))
-                  for dato in datos]
         #  ---------------------------------------------------
         return clases
 
