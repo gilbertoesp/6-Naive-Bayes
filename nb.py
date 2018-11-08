@@ -120,7 +120,9 @@ class NaiveBayes:
             #  raise NotImplementedError("Falta cmletar esto para la tarea")
             # TODO: NAIVE BAYES
             #       task: que carajos pongo aqui?
-            #
+
+            # Para cada clase (X), contamos cuantas veces aparece FIXME
+            self.frec['clases'][clase] += clases.count(clase)
             #  ---------------------------------------------------
 
             # Ahora se actualiza el valor de las frecuencias por cada atributo y
@@ -134,8 +136,12 @@ class NaiveBayes:
                     #  --------------------------------------------------
                     #  agregar aquí el código
                     #  raise NotImplementedError("Falta cmletar esto para la tarea")
+                    # TODO: Describir todo el algoritmo alv
+
+                    #  (que haogo)  FIXME
+                    self.frec[var][clase][val] += dato_var_clase.count(val)
                     #  --------------------------------------------------
-                    break; #TODO
+
         # Ahora hay que actualizar al final los logaritmos de las
         # probabilidades para hacer el reconocimiento muy rápido (Usar
         # únicamente la información de self.frec par hacer esto)
@@ -144,6 +150,12 @@ class NaiveBayes:
             #  ---------------------------------------------------
             #  agregar aqui el código
             #  raise NotImplementedError("Falta cmletar esto para la tarea")
+            # TODO :
+
+            Nc = self.frec['clases'][clase] # COMT porque 'Nc'?
+            self.log_probs['clases'][clase] = log(Nc / N) # COMT porque divido un log?
+
+
             #  ---------------------------------------------------
 
             # Ahora se actualiza la probabilidad por cada atributo y
@@ -153,9 +165,11 @@ class NaiveBayes:
                     #  --------------------------------------------------
                     #  agregar aquí el código
                     #  raise NotImplementedError("Falta cmletar esto para la tarea")
-                    #  --------------------------------------------------
-                        break
-                    # TODO: Actualizar probabilidad,
+                    # TODO: Actualizar probabilidad, Laplace
+                    # task: explicar esto
+                    Ncv = self.frec[var][clase][val]
+                    K = len(self.vals[var]) # cardinalidad de var
+                    self.log_probs[var][clase][val] = log((Ncv + 1) / (Nc + K) ) # laplace rule
                     #  --------------------------------------------------
 
     def reconoce(self, datos):
@@ -177,6 +191,17 @@ class NaiveBayes:
         #  ---------------------------------------------------
         #  agregar aquí el código
         #   TODO: reconoce()
+        #       COMT porque log
+        def log_prop(dato, clase):
+            return (
+                # COMT sumatoria de logaritmos
+                self.log_probs['clases'][clase] +
+                sum([self.log_probs[var][clase][dato[i]]
+                for (i, var) in enumerate(self.var_nom)])
+            )
+
+        clases = [max(self.clases, key = lambda clase: log_prop(dato, clase))
+                    for dato in datos]
         #  ---------------------------------------------------
         return clases
 
