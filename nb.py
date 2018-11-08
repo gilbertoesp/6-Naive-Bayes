@@ -118,6 +118,9 @@ class NaiveBayes:
             #  ---------------------------------------------------
             #  agregar aqui el código
             #  raise NotImplementedError("Falta cmletar esto para la tarea")
+            # TODO: NAIVE BAYES
+            #       task: que carajos pongo aqui?
+            #
             #  ---------------------------------------------------
 
             # Ahora se actualiza el valor de las frecuencias por cada atributo y
@@ -132,7 +135,7 @@ class NaiveBayes:
                     #  agregar aquí el código
                     #  raise NotImplementedError("Falta cmletar esto para la tarea")
                     #  --------------------------------------------------
-
+                    break; #TODO
         # Ahora hay que actualizar al final los logaritmos de las
         # probabilidades para hacer el reconocimiento muy rápido (Usar
         # únicamente la información de self.frec par hacer esto)
@@ -150,6 +153,9 @@ class NaiveBayes:
                     #  --------------------------------------------------
                     #  agregar aquí el código
                     #  raise NotImplementedError("Falta cmletar esto para la tarea")
+                    #  --------------------------------------------------
+                        break
+                    # TODO: Actualizar probabilidad,
                     #  --------------------------------------------------
 
     def reconoce(self, datos):
@@ -170,7 +176,7 @@ class NaiveBayes:
 
         #  ---------------------------------------------------
         #  agregar aquí el código
-
+        #   TODO: reconoce()
         #  ---------------------------------------------------
         return clases
 
