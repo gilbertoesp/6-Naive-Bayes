@@ -18,6 +18,10 @@ class NaiveBayes:
     Clase genérica del clasificador naive bayes, para entradas con
     dominio discreto y finito
 
+        clases = {'N', 'P'}
+        variables = ['uno', 'dos']
+        valores = {'uno': {1, 2, 3, 4}, 'dos': {10, 20}}
+
     """
 
     def __init__(self, clases=None, variables=None, valores=None):
@@ -145,7 +149,7 @@ class NaiveBayes:
         # Ahora hay que actualizar al final los logaritmos de las
         # probabilidades para hacer el reconocimiento muy rápido (Usar
         # únicamente la información de self.frec par hacer esto)
-        N = sum([self.frec['clases'][cls] for cls in clases])
+        N = sum([self.frec['clases'][cls] for cls in self.frec['clases']])
         for clase in clases:
             #  ---------------------------------------------------
             #  agregar aqui el código
@@ -192,16 +196,13 @@ class NaiveBayes:
         #  agregar aquí el código
         #   TODO: reconoce()
         #       COMT porque log
-        def log_prop(dato, clase):
-            return (
-                # COMT sumatoria de logaritmos
-                self.log_probs['clases'][clase] +
-                sum([self.log_probs[var][clase][dato[i]]
-                for (i, var) in enumerate(self.var_nom)])
-            )
+        def log_prob(dato, clase):
+            return (self.log_probs['clases'][clase] +
+                    sum([self.log_probs[var][clase][dato[i]]
+                         for (i, var) in enumerate(self.var_nom)]))
 
-        clases = [max(self.clases, key = lambda clase: log_prop(dato, clase))
-                    for dato in datos]
+        clases = [max(self.clases, key=lambda clase: log_prob(dato, clase))
+                  for dato in datos]
         #  ---------------------------------------------------
         return clases
 
@@ -225,26 +226,26 @@ def test():
 
     assert nb.frec['clases'] == {'N': 0, 'P': 0}
     assert nb.frec['uno']['N'] == {1: 0, 2: 0, 3: 0, 4: 0}
-    print("La primera prueba se completo con exito")
+    print("La primera prueba se completo con exito") # checa asignacion en el constructor
 
     data = [[1, 10], [2, 10], [3, 10], [4, 10],
             [1, 20], [2, 20], [3, 20], [4, 20]]
     clases = ['N', 'P', 'P', 'N', 'N', 'P', 'N', 'N']
 
-    nb = NaiveBayes()
+    nb = NaiveBayes() # creamos un nb que listo para aprender
     assert nb.frec is None
 
-    nb.aprende(data, clases)
+    nb.aprende(data, clases) # entrenamos
     assert nb.frec['clases'] == {'N': 5, 'P': 3}
     assert nb.frec['0']['P'] == {1: 0, 2: 2, 3: 1, 4: 0}
     assert nb.frec['0']['N'] == {1: 2, 2: 0, 3: 1, 4: 2}
     assert nb.frec['1']['P'] == {10: 2, 20: 1}
     assert nb.frec['1']['N'] == {10: 2, 20: 3}
-    print("La segunda prueba se completó con exito")
+    print("La segunda prueba se completó con exito") # revisa que el diccionario de frecuencia este correcto
 
     assert nb.log_probs['clases']['N'] == log(5/8)
-    assert nb.frec['0']['P'][1] == log(1/7)
-    assert nb.frec['1']['N'][20] == log(4/7)
+    assert nb.log_probs['0']['P'][1] == log(1/7) # error, solicita de frecuencia en vez de log_props, reparado
+    assert nb.log_probs['1']['N'][20] == log(4/7)
     print("La tercera prueba se completó con exito")
 
     data_test = [[2, 20], [4, 10]]
