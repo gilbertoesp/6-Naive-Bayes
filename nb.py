@@ -124,7 +124,7 @@ class NaiveBayes:
             self.frec['clases'][clase] += clases.count(clase)
             #  ---------------------------------------------------
             # Ahora se actualiza el valor de las frecuencias por cada atributo y
-            # para cada posible clase        #
+            # para cada posible clase
             for (i, var) in enumerate(self.var_nom): # identificadores de las variables
                 #datos para cada variable de cada clase
                 dato_var_clase = [datos[j][i] for j in range(len(datos))
@@ -142,7 +142,7 @@ class NaiveBayes:
         for clase in clases:
             #  ---------------------------------------------------
             Nc = self.frec['clases'][clase]
-            self.log_probs['clases'][clase] = log(Nc / N) 
+            self.log_probs['clases'][clase] = log(Nc / N)
             #  ---------------------------------------------------
 
             # Ahora se actualiza la probabilidad por cada atributo y
