@@ -83,7 +83,6 @@ def spam_filter():
 
     #  ---------------------------------------------------
     #   agregar aqui el código
-    #  ---------------------------------------------------
     datos, clases = carga_datos('mails.data', 'mails.class')
 
     bayes = nb.NaiveBayes()
@@ -96,11 +95,7 @@ def spam_filter():
     clasesReconocidas = bayes.reconoce(datos)
 
     error_prueba = error_clasif(clases, clasesReconocidas)
-    #
-    #
-    #
     #  ---------------------------------------------------
-
     return error_entrenamiento, error_prueba
 
 
@@ -109,3 +104,13 @@ if __name__ == "__main__":
     ee, ep = spam_filter()
     print("El error de entrenamiento es {}".format(ee))
     print("El error de predicción es {}".format(ep))
+    #
+    #¿Es posible detectar con Naive Bayes cuales son las palabras que
+    # más influyen para decidir que un correo es Spam?
+    #¿Cuales palabras son las que determinan más claramente que un
+    # correo no s Spam? Anexe su respuesta con justificación al final del
+    # archivo spam_filter.py en forma de comentario.
+    #
+    # Al ver el numero de repeticiones que tiene cada palabra podemos saber que palabras influyen mas en saber si un correo spam.
+    # Palabras que son repetidas muchas veces en los correos marcados como spam; click, dollar, million. Estas palabras tienen lo que seria un mayor peso al decidir sobre algun correo, pues su alta frecuencia origina que tengan mayor probabilidad.
+    #  ---------------------------------------------------
