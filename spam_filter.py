@@ -90,12 +90,12 @@ def spam_filter():
     bayes.aprende(datos, clases)
     clasesReconocidas = bayes.reconoce(datos)
 
-    error_al_aprender = error_clasif(clases, clasesReconocidas)
+    error_entrenamiento = error_clasif(clases, clasesReconocidas)
 
     datos, clases = carga_datos('mails_test.data','mails_test.class')
     clasesReconocidas = bayes.reconoce(datos)
 
-    errorPrueba = error_clasif(clases, clasesReconocidas)
+    error_prueba = error_clasif(clases, clasesReconocidas)
     #
     #
     #
